@@ -1,0 +1,25 @@
+  # Main program
+while play:
+    print_board()
+    player_details = get_player_details(curr_player)
+    curr_player = player_details[0]
+    print("Player {}: Enter a number between 1 and 9".format(curr_player))
+    input_slot = int(input())
+
+    #Inserting 'X' or 'O' in desired spot
+    insert_input(input_slot, player_details[1])
+    count += 1
+    
+    # Check if anybody won
+    winner = win_game(player_details[1], curr_player)
+    if count == 9 and not winner:
+        print("It's a tie!!")
+        tie = True
+        print_board()
+        
+    # Check if players want to play again
+    if winner or tie:
+        play = play_again()
+        if play:
+            curr_player = ''
+            count = 0
